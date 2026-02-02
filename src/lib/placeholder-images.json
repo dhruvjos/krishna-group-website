@@ -1,0 +1,70 @@
+{
+  "placeholderImages": [
+    {
+      "id": "founder-main",
+      "description": "Image of the founders of Krishna Group.",
+      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI4NjA5NzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "hero-1",
+      "description": "A dynamic shot of a modern classroom with an engaging teacher.",
+      "imageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjbGFzc3Jvb20lMjBsZWFybmluZ3xlbnwwfHx8fDE3NjI5MjI1MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "classroom learning"
+    },
+    {
+      "id": "hero-2",
+      "description": "Students collaborating on a project in a bright, open space.",
+      "imageUrl": "https://images.unsplash.com/photo-1758270705317-3ef6142d306f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzdHVkZW50cyUyMGNvbGxhYm9yYXRpb258ZW58MHx8fHwxNzYyODE5MTg5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students collaboration"
+    },
+    {
+      "id": "hero-3",
+      "description": "A close-up of a person presenting at a corporate training session.",
+      "imageUrl": "https://images.unsplash.com/photo-1557804506-669a67965ba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29ycG9yYXRlJTIwdHJhaW5pbmd8ZW58MHx8fHwxNzYyOTQ0NzY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "corporate training"
+    },
+    {
+      "id": "hero-4",
+      "description": "A collage of students and activities at Krishna Group.",
+      "imageUrl": "https://images.unsplash.com/photo-1663247455965-b63fa4048b29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50cyUyMGFjdGl2aXRpZXN8ZW58MHx8fHwxNzYyOTQ0NzY2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "students activities"
+    },
+    {
+      "id": "featured-1",
+      "description": "A person confidently speaking at a podium, representing leadership.",
+      "imageUrl": "https://images.unsplash.com/photo-1759310610552-914069ec2e0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsZWFkZXJzaGlwJTIwcHJlc2VudGF0aW9ufGVufDB8fHx8MTc2Mjk0NDc2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leadership presentation"
+    },
+    {
+      "id": "featured-2",
+      "description": "A collection of flags from different countries, representing language learning.",
+      "imageUrl": "https://images.unsplash.com/photo-1539632346654-dd4c3cffad8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bGFuZ3VhZ2UlMjBsZWFybmluZ3xlbnwwfHx8fDE3NjI4Nzg4NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "language learning"
+    },
+    {
+      "id": "featured-3",
+      "description": "A professional handshake, representing corporate skills and interview preparation.",
+      "imageUrl": "https://images.unsplash.com/photo-1758518729240-7162d07427b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cHJvZmVzc2lvbmFsJTIwaGFuZHNoYWtlfGVufDB8fHx8MTc2Mjk0NDc2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional handshake"
+    },
+    {
+      "id": "event-1",
+      "description": "Thumbnail for a recent event video.",
+      "imageUrl": "https://i.postimg.cc/L8y2hC47/event1.jpg",
+      "imageHint": "event students"
+    },
+    {
+      "id": "event-2",
+      "description": "Thumbnail for a recent event video.",
+      "imageUrl": "https://i.postimg.cc/T1bQ2bQz/event2.jpg",
+      "imageHint": "event presentation"
+    },
+    {
+      "id": "event-3",
+      "description": "Thumbnail for a recent event video.",
+      "imageUrl": "https://i.postimg.cc/PqgRZvYv/event3.jpg",
+      "imageHint": "event award"
+    }
+  ]
+}

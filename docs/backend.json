@@ -1,0 +1,169 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Krishna Group Website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the user.",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the user."
+        },
+        "registrationDate": {
+          "type": "string",
+          "description": "The date and time the user registered.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "registrationDate"
+      ]
+    },
+    "Course": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Course",
+      "type": "object",
+      "description": "Represents a course offered by Krishna Group.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the course."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the course."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the course."
+        },
+        "instructor": {
+          "type": "string",
+          "description": "The name of the instructor teaching the course."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "instructor"
+      ]
+    },
+    "CourseRegistration": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CourseRegistration",
+      "type": "object",
+      "description": "Represents a user's registration for a course.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the course registration."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N CourseRegistration)"
+        },
+        "courseId": {
+          "type": "string",
+          "description": "Reference to Course. (Relationship: Course 1:N CourseRegistration)"
+        },
+        "registrationDate": {
+          "type": "string",
+          "description": "The date and time the user registered for the course.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "courseId",
+        "registrationDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user data. The userId parameter is the Firebase Authentication UID.  This path enforces ownership, ensuring only the authenticated user can access their data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication UID of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/courseRegistrations/{courseRegistrationId}",
+        "definition": {
+          "entityName": "CourseRegistration",
+          "schema": {
+            "$ref": "#/backend/entities/CourseRegistration"
+          },
+          "description": "Stores course registrations for a specific user. The userId parameter is the Firebase Authentication UID, enforcing ownership and ensuring only the user can access their registration data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication UID of the user."
+            },
+            {
+              "name": "courseRegistrationId",
+              "description": "The unique ID of the course registration."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/courses/{courseId}",
+        "definition": {
+          "entityName": "Course",
+          "schema": {
+            "$ref": "#/backend/entities/Course"
+          },
+          "description": "Stores course data.  Publicly accessible.",
+          "params": [
+            {
+              "name": "courseId",
+              "description": "The unique ID of the course."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to store user information and course registrations. The structure prioritizes authorization independence by leveraging path-based ownership for user data and segregates data based on access requirements.  User data is stored under `/users/{userId}`.  Course registrations are stored under `/users/{userId}/courseRegistrations/{courseRegistrationId}` which ensures that only the user can access their registration data. This design achieves Authorization Independence, since access control relies solely on the `request.auth.uid` matching the `userId` in the path.  It also supports required QAPs since listing course registrations is limited to the user."
+  }
+}

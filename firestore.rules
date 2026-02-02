@@ -1,0 +1,69 @@
+
+/**
+ * @file Firestore Security Rules
+ * @description This ruleset enforces a strict user-ownership model for user data and course registrations,
+ *              while allowing public read access to course information and admin access to all registrations.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profiles, accessible only to the authenticated user with matching UID.
+ * - /users/{userId}/courseRegistrations/{courseRegistrationId}: Stores course registrations for a user, accessible only to that user or an admin.
+ * - /courses/{courseId}: Stores publicly accessible course information.
+ *
+ * Key Security Decisions:
+ * - User data and course registrations are strictly owned by the authenticated user, enforced via path-based authorization (`isOwner(userId)`).
+ * - Admins (identified by a custom claim `request.auth.token.admin == true`) have read-only access to all course registrations via a collection group query.
+ * - Courses are publicly readable, but write access is not explicitly defined in the provided schema (TODO).
+ * - Listing of user profiles is not allowed.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * Helper functions
+     */
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    /**
+     * @description Protects user profiles, ensuring only the authenticated user can access their own data.
+     * @path /users/{userId}
+     */
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+      allow list: if false;
+    }
+
+    /**
+     * @description Protects course registrations under a user's profile.
+     * Allows user to manage their own registrations, and allows admins to read them.
+     * @path /users/{userId}/courseRegistrations/{courseRegistrationId}
+     */
+    match /users/{userId}/courseRegistrations/{courseRegistrationId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // Direct listing of subcollection is disabled.
+      allow create, update, delete: if isOwner(userId);
+
+      // This is for the collection group query used by admins.
+      // An admin can read any document in the 'courseRegistrations' collection group.
+      allow list: if isAdmin(); 
+    }
+
+    /**
+     * @description Allows public read access to course data. Write access requires admin privileges.
+     * @path /courses/{courseId}
+     */
+    match /courses/{courseId} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}
+
+    
